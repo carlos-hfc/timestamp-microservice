@@ -1,29 +1,26 @@
-name: Node.js App
+name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
-  run-app:
+  start:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do repositório
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 20
+          node-version: '20'
 
-      - name: Instalar dependências
+      - name: Install dependencies
         run: npm install
 
-      - name: Instalar utilitário para teste de servidor
-        run: npm install --save-dev start-server-and-test
-
-      - name: Testar se o app Express sobe corretamente
-        run: npx start-server-and-test start http://localhost:3333
+      - name: Run start
+        run: npm run start
