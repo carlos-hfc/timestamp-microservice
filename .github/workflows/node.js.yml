@@ -22,5 +22,8 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Rodar o script de start
-        run: npm start
+      - name: Instalar utilitário para teste de servidor
+        run: npm install --save-dev start-server-and-test
+
+      - name: Testar se o app Express sobe corretamente
+        run: npx start-server-and-test start http://localhost:3333
