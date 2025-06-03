@@ -24,6 +24,13 @@ app.get("/api/:date", async (request, response) => {
   })
 })
 
+app.get("/api", async (_, response) => {
+  return response.json({
+    unix: Date.now(),
+    utc: new Date(Date.now()).toUTCString()
+  })
+})
+
 app.listen(process.env.PORT || 3333, () => {
   console.log("HTTP Server running")
 })
